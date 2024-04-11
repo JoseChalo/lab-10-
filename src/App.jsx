@@ -45,7 +45,7 @@ function BasicExample() {
             onChange={handleChange}
           />
           <div className='bg-primary px-4 d-flex align-items-center justify-content-center'>
-            <span>Tareas agregadas: {Numtasks}</span>
+            <span>{Numtasks} Tareas pendientes</span>
           </div>
           <Button variant="outline-success" id="button-addon2" type="submit">
             AGREGAR
