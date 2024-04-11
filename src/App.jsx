@@ -7,6 +7,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 function BasicExample() {
   const [texto, setTexto] = useState('');
   const [tasks, addTask] = useState([]);
+  const [Numtasks, addTaskNum] = useState(0);
 
   const handleChange = (event) => {
     setTexto(event.target.value);
@@ -17,11 +18,18 @@ function BasicExample() {
     if (texto.trim() !== '') {
       addTask((prevItems) => [...prevItems, texto]);
       setTexto('');
+      addTaskNum(Numtasks + 1);
     }
   };
 
   const removeItem = (num) => {
     addTask((prevItems) => prevItems.filter((_, i) => i !== num));
+    addTaskNum(Numtasks - 1);
+  };
+
+  const removeAllItems = () => {
+    addTask([]);
+    addTaskNum(Numtasks - Numtasks);
   };
 
   return (
@@ -36,6 +44,9 @@ function BasicExample() {
             value={texto}
             onChange={handleChange}
           />
+          <div className='bg-primary px-4 d-flex align-items-center justify-content-center'>
+            <span>{Numtasks} Tareas pendientes</span>
+          </div>
           <Button variant="outline-success" id="button-addon2" type="submit">
             AGREGAR
           </Button>
@@ -54,6 +65,14 @@ function BasicExample() {
           </Button>
         </div>
       ))}
+
+      <Button
+        className="mx-auto d-block mt-3"
+        variant="warning"
+        onClick={() => removeAllItems()}
+      >
+        Eliminar Todo
+      </Button>
     </div>
   );
 }
